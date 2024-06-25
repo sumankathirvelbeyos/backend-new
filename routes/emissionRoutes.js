@@ -55,7 +55,7 @@ router.post("/profiledetails", async (req, res) => {
   }
 });
 
-router.get("/getprofiledetails", async (req, res) => {
+router.post("/getprofiledetails", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -99,7 +99,7 @@ router.post("/offset", async (req, res) => {
   }
 });
 
-router.get("/getoffset", async (req, res) => {
+router.post("/getoffset", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -162,7 +162,7 @@ router.post("/fugitiveemmission", async (req, res) => {
   }
 });
 
-router.get("/getfugitiveemmission", async (req, res) => {
+router.post("/getfugitiveemmission", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -223,7 +223,7 @@ router.post("/mobilecombustion", async (req, res) => {
   }
 });
 
-router.get("/getmobilecombustion", async (req, res) => {
+router.post("/getmobilecombustion", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -282,7 +282,7 @@ router.post("/processemission", async (req, res) => {
   }
 });
 
-router.get("/getprocessemission", async (req, res) => {
+router.post("/getprocessemission", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -339,7 +339,7 @@ router.post("/purchasedelectricity", async (req, res) => {
   }
 });
 
-router.get("/getpurchasedelectricity", async (req, res) => {
+router.post("/getpurchasedelectricity", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -382,7 +382,7 @@ router.post("/reducedemission", async (req, res) => {
   }
 });
 
-router.get("/getreducedemission", async (req, res) => {
+router.post("/getreducedemission", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -424,7 +424,7 @@ router.post("/userconfig", async (req, res) => {
   }
 });
 
-router.get("/getuserconfig", async (req, res) => {
+router.post("/getuserconfig", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -525,7 +525,7 @@ router.post("/ghg1", async (req, res) => {
   }
 });
 
-router.get("/getghg1", async (req, res) => {
+router.post("/getghg1", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -667,7 +667,7 @@ router.post("/ghg2", async (req, res) => {
   }
 });
 
-router.get("/getghg2", async (req, res) => {
+router.post("/getghg2", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -761,7 +761,7 @@ router.post("/ghg3", async (req, res) => {
 });
 
 //facilitydeclaration
-router.get("/getghg3", async (req, res) => {
+router.post("/getghg3", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -804,7 +804,7 @@ router.post("/facilitydeclaration", async (req, res) => {
   }
 });
 
-router.get("/getfacilitydeclaration", async (req, res) => {
+router.post("/getfacilitydeclaration", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -847,7 +847,7 @@ router.post("/emissionmanagement", async (req, res) => {
   }
 });
 
-router.get("/getemissionmanagement", async (req, res) => {
+router.post("/getemissionmanagement", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -916,7 +916,7 @@ router.post("/boundarysetting", async (req, res) => {
   }
 });
 
-router.get("/getboundarysetting", async (req, res) => {
+router.post("/getboundarysetting", async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -956,7 +956,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.get("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { email } = req.body;
 

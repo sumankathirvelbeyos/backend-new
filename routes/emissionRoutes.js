@@ -15,6 +15,7 @@ const Facility = require("../models/facilityDeclaration");
 const EmissionManagement = require("../models/emissionManagement");
 const BoundarySetting = require("../models/boundarySetting");
 const Login = require("../models/login");
+const StationaryCombustion = require("../models/stationaryCombustion");
 
 //profiledetails
 router.post("/profiledetails", async (req, res) => {
@@ -964,6 +965,68 @@ router.post("/login", async (req, res) => {
       res.status(422).json({ error: "nomatch" });
     } else {
       const response = await Login.find({ email: email });
+      res.json(response);
+    }
+  } catch (error) {
+    res.status(422).json(error);
+    console.log("catch block error");
+    console.log(error);
+  }
+});
+
+
+
+//login
+
+router.post("/stationarycombustion", async (req, res) => {
+  try {
+    const { 
+      email,
+      year,
+      month,
+      facilityCode,
+      facilityName,
+      emissionSource,
+      fuelType,
+      quantity,
+      siUnits,
+      fileUrl
+    
+    } = req.body;
+
+    if (!email) {
+      res.status(422).json({ error: "fill all the details" });
+    }
+
+    const finalUser = new StationaryCombustion({
+      email,
+      year,
+      month,
+      facilityCode,
+      facilityName,
+      emissionSource,
+      fuelType,
+      quantity,
+      siUnits,
+      fileUrl
+    });
+    const storeData = await finalUser.save();
+    res.status(201).json({ status: 200, storeData });
+  } catch (error) {
+    res.status(422).json(error);
+    console.log("catch block error");
+    console.log(error);
+  }
+});
+
+router.post("/getstationarycombustion", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      res.status(422).json({ error: "nomatch" });
+    } else {
+      const response = await StationaryCombustion.find({ email: email });
       res.json(response);
     }
   } catch (error) {

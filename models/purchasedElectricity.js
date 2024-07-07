@@ -5,7 +5,8 @@ const PurchasedElectricitySchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-  }, year: {
+  },
+  year: {
     type: String,
     required: true
   },
@@ -21,19 +22,43 @@ const PurchasedElectricitySchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  electricityType: {
+  typeofElectricity: {
     type: String,
     required: true
   },
-  consumption: {
+  quantity: {
     type: Number,
     required: true
   },
-  siUnits: {
+  units: {
     type: String,
     required: true
   },
   fileUrl: {
+    type: String,
+    required: true
+  },
+  id: {
+    type: Number,
+    required: true
+  },
+  reportingYear: {
+    type: String,
+    required: true
+  },
+  emission: {
+    type: Number,
+    required: true
+  },
+  status: {
+    type: Number,
+    required: true
+  },
+  emissionType: {
+    type: String,
+    required: true
+  },
+  responsibility: {
     type: String,
     required: true
   }

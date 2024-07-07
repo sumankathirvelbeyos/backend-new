@@ -5,7 +5,8 @@ const processEmissionSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-  },year: {
+  },
+  year: {
     type: String,
     required: true
   },
@@ -40,6 +41,36 @@ const processEmissionSchema = new mongoose.Schema({
   fileUrl: {
     type: String,
     required: true
+  },
+  id: {
+    type: Number,
+    required: true
+  },
+  emission: {
+    type: Number,
+    required: true
+  },
+  status: {
+    type: Number,
+    required: true
+  },
+  emissionType: {
+    type: String,
+    required: true
+  },
+  responsibility: {
+    type: String,
+    required: true
+  },
+  button: {
+    text: {
+      type: String,
+      required: true
+    },
+    action: {
+      type: String,
+      required: true
+    }
   }
 });
 

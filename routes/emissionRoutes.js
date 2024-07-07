@@ -17,7 +17,8 @@ const BoundarySetting = require("../models/boundarySetting");
 const Login = require("../models/login");
 const StationaryCombustion = require("../models/stationaryCombustion");
 const Target = require("../models/target");
-
+const multer = require('multer');
+const path = require('path');
 //profiledetails
 router.post("/profiledetails", async (req, res) => {
   try {
@@ -1089,6 +1090,57 @@ router.post("/gettarget", async (req, res) => {
     console.log("catch block error");
     console.log(error);
   }
+});
+
+//uploadfiles
+// Set storage engine
+const storage = multer.diskStorage({
+  destination: './uploads/',
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+
+// Initialize upload
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 }, // Limit file size to 1MB
+  fileFilter: (req, file, cb) => {
+    checkFileType(file, cb);
+  }
+}).single('pdfFile'); // 'pdfFile' is the name of the input field
+
+// Check file type
+function checkFileType(file, cb) {
+  // Allowed ext
+  const filetypes = /pdf/;
+  // Check ext
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  // Check mime
+  const mimetype = filetypes.test(file.mimetype);
+
+  if (mimetype && extname) {
+    return cb(null, true);
+  } else {
+    cb('Error: PDFs Only!');
+  }
+}
+
+router.post('/upload', (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      res.status(400).json({ message: err });
+    } else {
+      if (req.file == undefined) {
+        res.status(400).json({ message: 'No file selected!' });
+      } else {
+        res.status(200).json({
+          message: 'File uploaded!',
+          file: `uploads/${req.file.filename}`
+        });
+      }
+    }
+  });
 });
 
 module.exports = router;

@@ -5,7 +5,8 @@ const mobileCombustionSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-  }, year: {
+  }, 
+  year: {
     type: String,
     required: true
   },
@@ -44,6 +45,36 @@ const mobileCombustionSchema = new mongoose.Schema({
   fileUrl: {
     type: String,
     required: true
+  },
+  emissions: {
+    type: Number,
+    required: true
+  },
+  id: {
+    type: Number,
+    required: true
+  },
+  emissionType: {
+    type: String,
+    required: true
+  },
+  responsibility: {
+    type: String,
+    required: true
+  },
+  status: {
+    type: Number,
+    required: true
+  },
+  button: {
+    text: {
+      type: String,
+      required: true
+    },
+    action: {
+      type: String,
+      required: true
+    }
   }
 });
 

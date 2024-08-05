@@ -50,10 +50,6 @@ const mobileCombustionSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  id: {
-    type: Number,
-    required: true
-  },
   emissionType: {
     type: String,
     required: true

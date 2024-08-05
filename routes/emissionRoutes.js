@@ -190,33 +190,45 @@ router.post("/mobilecombustion", async (req, res) => {
       email,
       year,
       month,
+      facilityCode,
+      facilityName,
       vehicleType,
       fuelType,
       quantity,
       siUnits,
       distance,
       fileUrl,
-      facilityName,
-      facilityCode,
+      emissions,
+      emissionType,
+      responsibility,
+      status,
+      button
     } = req.body;
 
-    if (!email) {
-      res.status(422).json({ error: "fill all the details" });
+    // Check if all required fields are provided
+    if (!email || !year || !month || !facilityCode || !facilityName || !vehicleType || !fuelType || !quantity || !siUnits || !distance || !fileUrl || !emissions || !emissionType || !responsibility || !status || !button || !button.text || !button.action) {
+      return res.status(422).json({ error: "Please fill all the required fields" });
     }
 
     const finalUser = new MobileCombustion({
       email,
       year,
       month,
+      facilityCode,
+      facilityName,
       vehicleType,
       fuelType,
       quantity,
       siUnits,
       distance,
       fileUrl,
-      facilityName,
-      facilityCode,
+      emissions,
+      emissionType,
+      responsibility,
+      status,
+      button
     });
+
     const storeData = await finalUser.save();
     res.status(201).json({ status: 200, storeData });
   } catch (error) {

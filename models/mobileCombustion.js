@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const mobileCombustionSchema = new mongoose.Schema({
   email: {
     type: String,
-    required: true,
-  }, 
+    required: true
+  },
   year: {
     type: String,
     required: true
@@ -44,9 +44,13 @@ const mobileCombustionSchema = new mongoose.Schema({
   },
   fileUrl: {
     type: String,
-    required: true
+    default: ""
   },
   emissions: {
+    type: Number,
+    required: true
+  },
+  monthlyStatus: {
     type: Number,
     required: true
   },
@@ -57,20 +61,6 @@ const mobileCombustionSchema = new mongoose.Schema({
   responsibility: {
     type: String,
     required: true
-  },
-  status: {
-    type: Number,
-    required: true
-  },
-  button: {
-    text: {
-      type: String,
-      required: true
-    },
-    action: {
-      type: String,
-      required: true
-    }
   }
 });
 

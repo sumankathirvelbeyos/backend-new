@@ -199,14 +199,13 @@ router.post("/mobilecombustion", async (req, res) => {
       distance,
       fileUrl,
       emissions,
+      monthlyStatus,
       emissionType,
-      responsibility,
-      status,
-      button
+      responsibility
     } = req.body;
 
     // Check if all required fields are provided
-    if (!email || !year || !month || !facilityCode || !facilityName || !vehicleType || !fuelType || !quantity || !siUnits || !distance || !fileUrl || !emissions || !emissionType || !responsibility || !status || !button || !button.text || !button.action) {
+    if (!year ||!email || !month || !facilityCode || !facilityName || !vehicleType || !fuelType || !quantity || !siUnits || !distance || !emissions || !monthlyStatus || !emissionType || !responsibility) {
       return res.status(422).json({ error: "Please fill all the required fields" });
     }
 
@@ -223,10 +222,9 @@ router.post("/mobilecombustion", async (req, res) => {
       distance,
       fileUrl,
       emissions,
+      monthlyStatus,
       emissionType,
-      responsibility,
-      status,
-      button
+      responsibility
     });
 
     const storeData = await finalUser.save();
@@ -994,36 +992,49 @@ router.post("/login", async (req, res) => {
 
 router.post("/stationarycombustion", async (req, res) => {
   try {
-    const { 
+    const {
       email,
       year,
       month,
       facilityCode,
       facilityName,
-      emissionSource,
+      vehicleType,
       fuelType,
       quantity,
       siUnits,
-      fileUrl
-    
+      distance,
+      fileUrl,
+      emissions,
+      emissionType,
+      responsibility,
+      status,
+      button
     } = req.body;
 
-    if (!email) {
-      res.status(422).json({ error: "fill all the details" });
+    // Check if all required fields are provided
+    if (!email || !year || !month || !facilityCode || !facilityName || !vehicleType || !fuelType || !quantity || !siUnits || !distance || !fileUrl || !emissions || !emissionType || !responsibility || !status || !button || !button.text || !button.action) {
+      return res.status(422).json({ error: "Please fill all the required fields" });
     }
 
-    const finalUser = new StationaryCombustion({
+    const finalUser = new MobileCombustion({
       email,
       year,
       month,
       facilityCode,
       facilityName,
-      emissionSource,
+      vehicleType,
       fuelType,
       quantity,
       siUnits,
-      fileUrl
+      distance,
+      fileUrl,
+      emissions,
+      emissionType,
+      responsibility,
+      status,
+      button
     });
+
     const storeData = await finalUser.save();
     res.status(201).json({ status: 200, storeData });
   } catch (error) {

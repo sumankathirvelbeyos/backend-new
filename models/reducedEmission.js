@@ -8,6 +8,10 @@ const reducedEmissionSchema = new mongoose.Schema({
   },description: {
     type: String,
     required: true
+  }
+  ,year: {
+    type: String,
+    required: true
   },
   emissionReduced: {
     type: Number,

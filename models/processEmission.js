@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 // Define the schema
 const processEmissionSchema = new mongoose.Schema({
-  email: {
+  email:{
     type: String,
-    required: true,
+    required: true
   },
   year: {
     type: String,
@@ -40,11 +40,7 @@ const processEmissionSchema = new mongoose.Schema({
   },
   fileUrl: {
     type: String,
-    required: true
-  },
-  id: {
-    type: Number,
-    required: true
+    default: ''
   },
   emission: {
     type: Number,
@@ -65,7 +61,7 @@ const processEmissionSchema = new mongoose.Schema({
   button: {
     text: {
       type: String,
-      required: true
+      default: ''
     },
     action: {
       type: String,

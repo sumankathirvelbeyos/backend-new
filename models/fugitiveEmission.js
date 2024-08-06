@@ -2,17 +2,14 @@ const mongoose = require('mongoose');
 
 // Define the schema
 const fugitiveEmissionSchema = new mongoose.Schema({
- 
   email: {
     type: String,
     required: true,
-  },facilityCode: {
-    type: String,
-    required: true
   },
-  facilityName: {
-    type: String,
-    required: true
+  id: {
+    type: Number,
+    required: true,
+    unique: true
   },
   year: {
     type: String,
@@ -22,32 +19,48 @@ const fugitiveEmissionSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  typeOfGasEmitted: {
+  facilityCode: {
+    type: String,
+    required: true
+  },
+  facilityName: {
     type: String,
     required: true
   },
   refrigerantChargedNew: {
-    type: Number,
+    type: String,
     required: true
   },
   capacityOfEquipmentNew: {
-    type: Number,
+    type: String,
     required: true
   },
   refrigerantChargedExisting: {
-    type: Number,
+    type: String,
     required: true
   },
   capacityOfEquipmentRetiring: {
-    type: Number,
+    type: String,
     required: true
   },
   refrigerantRecoveredRetiring: {
-    type: Number,
+    type: String,
     required: true
   },
-  fileUrl: {
+  emissions: {
     type: String,
+    required: true
+  },
+  emissionType: {
+    type: String,
+    required: true
+  },
+  responsibility: {
+    type: String,
+    required: true
+  },
+  monthlyStatus: {
+    type: Number,
     required: true
   }
 });

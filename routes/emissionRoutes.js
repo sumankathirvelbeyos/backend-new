@@ -79,7 +79,7 @@ router.post("/getprofiledetails", async (req, res) => {
 
 router.post("/offset", async (req, res) => {
   try {
-    const { email, description, emissionOffset, location, typeOfOffset } =
+    const { email, description, emissionOffset, location, typeOfOffset,year } =
       req.body;
 
     if (!email) {
@@ -88,6 +88,7 @@ router.post("/offset", async (req, res) => {
 
     const finalUser = new OffsetsPage({
       email,
+      year,
       description,
       emissionOffset,
       location,
@@ -125,36 +126,56 @@ router.post("/fugitiveemmission", async (req, res) => {
   try {
     const {
       email,
-      facilityCode,
-      facilityName,
+      id,
       year,
       month,
-      typeOfGasEmitted,
+      facilityCode,
+      facilityName,
       refrigerantChargedNew,
       capacityOfEquipmentNew,
       refrigerantChargedExisting,
       capacityOfEquipmentRetiring,
       refrigerantRecoveredRetiring,
-      fileUrl,
+      emissions,
+      emissionType,
+      responsibility,
+      monthlyStatus
     } = req.body;
 
-    if (!email) {
+    if (!email ||
+      !id ||
+      !year ||
+      !month ||
+      !facilityCode ||
+      !facilityName ||
+      !refrigerantChargedNew ||
+      !capacityOfEquipmentNew ||
+      !refrigerantChargedExisting ||
+      !capacityOfEquipmentRetiring ||
+      !refrigerantRecoveredRetiring ||
+      !emissions ||
+      !emissionType ||
+      !responsibility ||
+      !monthlyStatus) {
       res.status(422).json({ error: "fill all the details" });
     }
 
     const finalUser = new FugitiveEmission({
       email,
-      facilityCode,
-      facilityName,
+      id,
       year,
       month,
-      typeOfGasEmitted,
+      facilityCode,
+      facilityName,
       refrigerantChargedNew,
       capacityOfEquipmentNew,
       refrigerantChargedExisting,
       capacityOfEquipmentRetiring,
       refrigerantRecoveredRetiring,
-      fileUrl,
+      emissions,
+      emissionType,
+      responsibility,
+      monthlyStatus
     });
     const storeData = await finalUser.save();
     res.status(201).json({ status: 200, storeData });
@@ -268,12 +289,17 @@ router.post("/processemission", async (req, res) => {
       quantity,
       siUnits,
       fileUrl,
+      emission,
+      status,
+      emissionType,
+      responsibility,
+      button
     } = req.body;
-
-    if (!email) {
-      res.status(422).json({ error: "fill all the details" });
+  
+    if (!email || !year || !month || !facilityCode || !facilityName || !GasType || !Source || !quantity || !siUnits || emission === undefined || status === undefined || !emissionType || !responsibility || !button || !button.action) {
+      return res.status(422).json({ error: "fill all the details" });
     }
-
+  
     const finalUser = new ProcessEmission({
       email,
       year,
@@ -285,7 +311,13 @@ router.post("/processemission", async (req, res) => {
       quantity,
       siUnits,
       fileUrl,
+      emission,
+      status,
+      emissionType,
+      responsibility,
+      button
     });
+  
     const storeData = await finalUser.save();
     res.status(201).json({ status: 200, storeData });
   } catch (error) {
@@ -372,7 +404,7 @@ router.post("/getpurchasedelectricity", async (req, res) => {
 //ReducedEmission
 router.post("/reducedemission", async (req, res) => {
   try {
-    const { email, description, emissionReduced, facilityId, facility } =
+    const { email, description, emissionReduced, facilityId, facility ,year} =
       req.body;
 
     if (!email) {
@@ -381,6 +413,7 @@ router.post("/reducedemission", async (req, res) => {
 
     const finalUser = new ReducedEmission({
       email,
+      year,
       description,
       emissionReduced,
       facilityId,

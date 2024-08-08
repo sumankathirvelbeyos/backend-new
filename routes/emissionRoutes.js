@@ -1049,7 +1049,7 @@ router.post("/stationarycombustion", async (req, res) => {
       return res.status(422).json({ error: "Please fill all the required fields" });
     }
 
-    const finalUser = new MobileCombustion({
+    const finalUser = new StationaryCombustion({
       email,
       year,
       month,
